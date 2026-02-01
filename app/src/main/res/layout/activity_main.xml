@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <!-- Guess labels (left) + values (right) -->
+
+    <TextView
+        android:id="@+id/tvGuessLabel1"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Guess #1"
+        android:textSize="28sp"
+        android:textColor="#6D6D6D"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="24dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/tvGuess1"
+        app:layout_constraintHorizontal_chainStyle="spread_inside"/>
+
+    <TextView
+        android:id="@+id/tvGuess1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=""
+        android:textSize="28sp"
+        android:textColor="#6D6D6D"
+        android:layout_marginEnd="20dp"
+        app:layout_constraintBaseline_toBaselineOf="@+id/tvGuessLabel1"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
+        android:id="@+id/tvCheckLabel1"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Guess #1 Check"
+        android:textSize="28sp"
+        android:textColor="#6D6D6D"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="18dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvGuessLabel1"
+        app:layout_constraintEnd_toStartOf="@+id/tvResult1"/>
+
+    <TextView
+        android:id="@+id/tvResult1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=""
+        android:textSize="28sp"
+        android:textColor="#6D6D6D"
+        android:layout_marginEnd="20dp"
+        app:layout_constraintBaseline_toBaselineOf="@+id/tvCheckLabel1"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
+        android:id="@+id/tvGuessLabel2"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Guess #2"
+        android:textSize="28sp"
+        android:textColor="#6D6D6D"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="24dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvCheckLabel1"
+        app:layout_constraintEnd_toStartOf="@+id/tvGuess2"/>
+
+    <TextView
+        android:id="@+id/tvGuess2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=""
+        android:textSize="28sp"
+        android:textColor="#6D6D6D"
+        android:layout_marginEnd="20dp"
+        app:layout_constraintBaseline_toBaselineOf="@+id/tvGuessLabel2"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
+        android:id="@+id/tvCheckLabel2"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Guess #2 Check"
+        android:textSize="28sp"
+        android:textColor="#6D6D6D"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="18dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvGuessLabel2"
+        app:layout_constraintEnd_toStartOf="@+id/tvResult2"/>
+
+    <TextView
+        android:id="@+id/tvResult2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=""
+        android:textSize="28sp"
+        android:textColor="#6D6D6D"
+        android:layout_marginEnd="20dp"
+        app:layout_constraintBaseline_toBaselineOf="@+id/tvCheckLabel2"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
+        android:id="@+id/tvGuessLabel3"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Guess #3"
+        android:textSize="28sp"
+        android:textColor="#6D6D6D"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="24dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvCheckLabel2"
+        app:layout_constraintEnd_toStartOf="@+id/tvGuess3"/>
+
+    <TextView
+        android:id="@+id/tvGuess3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=""
+        android:textSize="28sp"
+        android:textColor="#6D6D6D"
+        android:layout_marginEnd="20dp"
+        app:layout_constraintBaseline_toBaselineOf="@+id/tvGuessLabel3"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
+        android:id="@+id/tvCheckLabel3"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Guess #3 Check"
+        android:textSize="28sp"
+        android:textColor="#6D6D6D"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="18dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvGuessLabel3"
+        app:layout_constraintEnd_toStartOf="@+id/tvResult3"/>
+
+    <TextView
+        android:id="@+id/tvResult3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=""
+        android:textSize="28sp"
+        android:textColor="#6D6D6D"
+        android:layout_marginEnd="20dp"
+        app:layout_constraintBaseline_toBaselineOf="@+id/tvCheckLabel3"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <!-- Target word (shown after 3 guesses; you can also show it anytime like your screenshot) -->
+    <TextView
+        android:id="@+id/tvAnswer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=""
+        android:textSize="48sp"
+        android:textColor="#6D6D6D"
+        app:layout_constraintTop_toBottomOf="@+id/tvCheckLabel3"
+        app:layout_constraintBottom_toTopOf="@+id/etGuess"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <!-- Bottom input row -->
+    <EditText
+        android:id="@+id/etGuess"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="Enter 4 letter guess here"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="12dp"
+        android:layout_marginBottom="20dp"
+        android:maxLength="4"
+        android:inputType="text"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/btnSubmit"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+    <Button
+        android:id="@+id/btnSubmit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="GUESS!"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
