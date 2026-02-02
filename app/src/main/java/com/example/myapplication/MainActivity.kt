@@ -6,6 +6,10 @@ import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import android.text.SpannableString
+import android.text.Spanned
+import android.text.style.ForegroundColorSpan
+import androidx.core.content.ContextCompat
 
 class MainActivity : AppCompatActivity() {
 
@@ -45,7 +49,11 @@ class MainActivity : AppCompatActivity() {
         tvAnswer.text = "" // hidden at start
 
         btnSubmit.setOnClickListener {
-            handleSubmit()
+            if (btnSubmit.text.toString() == "RESTART") {
+                resetGame()
+            } else {
+                handleSubmit()
+            }
         }
     }
 
@@ -60,23 +68,26 @@ class MainActivity : AppCompatActivity() {
             Toast.makeText(this, "Enter a 4-letter word", Toast.LENGTH_SHORT).show()
             return
         }
-
+        if (!rawGuess.all { it.isLetter() }) {
+            Toast.makeText(this, "Use letters A–Z only", Toast.LENGTH_SHORT).show()
+            return
+        }
         val guess = rawGuess.uppercase()
         val result = checkGuess(guess)
+        val colored = coloredGuess(guess)
 
-        // Show guess/result in the correct row
         when (guessCount) {
             0 -> {
                 tvGuess1.text = guess
-                tvResult1.text = result
+                tvResult1.text = colored
             }
             1 -> {
                 tvGuess2.text = guess
-                tvResult2.text = result
+                tvResult2.text = colored
             }
             2 -> {
                 tvGuess3.text = guess
-                tvResult3.text = result
+                tvResult3.text = colored
             }
         }
 
@@ -85,7 +96,8 @@ class MainActivity : AppCompatActivity() {
 
         // End of game: disable submit + reveal answer
         if (guessCount >= 3) {
-            btnSubmit.isEnabled = false
+            btnSubmit.isEnabled = true
+            btnSubmit.text = "RESTART"
             tvAnswer.text = "Answer: $wordToGuess"
         }
     }
@@ -124,5 +136,74 @@ class MainActivity : AppCompatActivity() {
             }
         }
         return result
+    }
+    private fun coloredGuess(guess: String): SpannableString {
+        val spannable = SpannableString(guess)
+
+        // Status per position: 0 = not in word, 1 = in word wrong spot, 2 = correct spot
+        val status = IntArray(4) { 0 }
+
+        // Count letters in target
+        val counts = mutableMapOf<Char, Int>()
+        for (c in wordToGuess) counts[c] = (counts[c] ?: 0) + 1
+
+        // Pass 1: exact matches (green)
+        for (i in 0..3) {
+            if (guess[i] == wordToGuess[i]) {
+                status[i] = 2
+                counts[guess[i]] = counts[guess[i]]!! - 1
+            }
+        }
+
+        // Pass 2: wrong position but exists (yellow)
+        for (i in 0..3) {
+            if (status[i] == 0) {
+                val c = guess[i]
+                val remaining = counts[c] ?: 0
+                if (remaining > 0) {
+                    status[i] = 1
+                    counts[c] = remaining - 1
+                }
+            }
+        }
+
+        // Apply colors
+        val green = ContextCompat.getColor(this, android.R.color.holo_green_dark)
+        val yellow = ContextCompat.getColor(this, android.R.color.holo_orange_light)
+        val red = ContextCompat.getColor(this, android.R.color.holo_red_dark)
+
+        for (i in 0..3) {
+            val color = when (status[i]) {
+                2 -> green
+                1 -> yellow
+                else -> red
+            }
+            spannable.setSpan(
+                ForegroundColorSpan(color),
+                i,
+                i + 1,
+                Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
+            )
+        }
+
+        return spannable
+    }
+
+    private fun resetGame() {
+        guessCount = 0
+        wordToGuess = FourLetterWordList.getRandomFourLetterWord()
+
+        tvGuess1.text = ""
+        tvResult1.text = ""
+        tvGuess2.text = ""
+        tvResult2.text = ""
+        tvGuess3.text = ""
+        tvResult3.text = ""
+
+        tvAnswer.text = ""
+        etGuess.text.clear()
+
+        btnSubmit.isEnabled = true
+        btnSubmit.text = "GUESS!"
     }
 }
